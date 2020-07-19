@@ -4,31 +4,70 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Savya Singh-Blog</title>
 <style>
+.smi {
+	text-align:center;
+}
+td { border:none;
+	background-color:white;
+    padding:0px 50px 0px 50px ;
+}
 .intro{
 	background-color:midnightblue;
     text-align:right;
-padding:10px 10px 10px 0px;
+    padding:10px 10px 10px 0px;
 }
+.hcp a:hover {
+	color:lightgreen;
+}
+body {
+  background-color:white ;
+}
+.image {
+    display:block;
+	margin-left:auto;
+    margin-right:auto;
+	padding:10px;
+}
+
 h1 {
-	color:midnightblue;
-    text-align:center
+background-color:white;
+	text-align:center;
+}
+#epi {
+	border:none;
+    background-color: white;
+}
+p {
+  padding:10px 10px 10px 10px;
+  font-family: verdana;
+  font-size: 20px;
+}
+input{
+ width:150px;
+ height:30px;
+ border:2px solid midnightblue;
+ background-color:white;
 }
 </style>
+<title>Savya Singh-Blog</title>
 </head>
 <body>
 <div class="intro">
 <a class="hcp" href="\pages\home.jsp"  style="font-size:25px;color:white;text-decoration:none;">home|</a>
-<a class="hcp" href="\pages\contact.jsp" style="font-size:25px;color:white;text-decoration:none;" >contact|</a>
-<a  class="hcp" href="\pages\blog.jsp"  style="font-size:25px;color:white;text-decoration:none;" target="_self">blog</a>
+<a class="hcp" href="\pages\contact.jsp" style="font-size:25px;color:white;text-decoration:none;">contact|</a>
+<a  class="hcp" href="\pages\blog.jsp"  style="font-size:25px;color:white;text-decoration:none;" target="_blank">blog</a>
 </div><br>
-<h1>Blog</h1>
-<!--<div style="text-align:center;">
-<label style="font-size:25px;">Search a blog:</label>
-<input type="text" id="myinput" onkeyup="myFunction()" placeholder="Search for Blog title">
-</div>-->
-<br><br>
+<table>
+    <tr>
+    <td>
+    <img src="\imagesused\savya.jpg" alt="NA" width=100px height=138px class="image" style="border:1px solid midnightblue;float:left;background-color:white"></td>
+<td></td>
+<td></td>
+<td></td>
+    <td>
+    <h1 style="padding:0px;"><u>Blog</u></h1>
+    <p><br>
 <form  method="post" action="/showblogs" style="text-align:center">
 <input type="submit" name="Show all Blogs" value="Show all blogs">
 </form>
@@ -39,27 +78,55 @@ h1 {
 <form  method="post" action="/delete" style="text-align:center">
 <input type="submit" name="Show all Blogs" value="Delete a blog">
 </form>
-<!--<script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myinput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("mytable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
+    </td></tr>
+    <tr>
+    <td>
+    <p style="font-size:15px;text-align-center;">Savya Singh</p>
+    </td>
+    </tr>
+    <tr>
+	<td style="padding:0px 5px 0px 5px;background-color:white;border:1px solid midnightblue;" >
+    	<ul style="padding-right:50px;list-style-type:none;">  
+    	<button title="click here" onclick="openEducation()" id="epi"><li ><h2 style="color:darkslateblue;">Education</h2></li></button><br><br>
+        <div id="Education" style="display:none">
+        <h2>1.LNCT&S,Bhopal<br>2.Bright Day School(CBSE)</h2>
+        </div>
+        <button title="click here " onclick="openPll()" id="epi"><li><h2 style="color:darkslateblue;">Programming Languages</h2></li></button><br><br>
+        <div id="Pll" style="display:none">
+        <h2>1.C++<br>2.Java<br>3.HTML</h2>
+        </div>
+       <button tittle="click here" onclick="openInternships()" id="epi"> <li><h2 style="color:darkslateblue;">Internships</h2></li></button><br>
+        <div id="Internships" style="display:none">
+        <h2>1.Lock The Deal:Agile<br></h2>
+        </div>
+     </ul></td>
+	</tr>
+   </table>
+   <script>
+function openEducation() {
+var x = document.getElementById("Education");
+	if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }}
+  function openPll() {
+  var y = document.getElementById("Pll");
+  if (y.style.display == "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  }}
+  function openInternships() {
+    var z = document.getElementById("Internships");
+
+  if (z.style.display == "none") {
+    z.style.display = "block";
+  } else {
+    z.style.display = "none";
   }
 }
-</script>-->
-<footer style="font-size:15px;text-align:center;"><br><br><br><br><br> Copyright © 2020 Savya Singh.  All rights reserved.</footer>
+</script>
+<p style="font-size:15px;text-align:center;"><br><br> Copyright © 2020 Savya Singh.  All rights reserved.</p>
 </body>
 </html>
-    

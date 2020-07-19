@@ -5,11 +5,13 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page import="java.sql.*" %>
+
 <%ResultSet resultset =null;%>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<title>Blog upadted</title>
 <style>
 .intro{
 	background-color:midnightblue;
@@ -17,7 +19,6 @@
     padding:10px 10px 10px 0px;
 }
 </style>
-<title>Blog-showblogs</title>
 </head>
 <body>
 <div class="intro">
@@ -25,9 +26,10 @@
 <a class="hcp" href="\pages\contact.jsp" style="font-size:25px;color:white;text-decoration:none;">contact|</a>
 <a  class="hcp" href="\pages\blog.jsp"  style="font-size:25px;color:white;text-decoration:none;" target="_blank">blog</a>
 </div><br>
-
 <%
-
+String bno = request.getParameter("bno");
+String bname = request.getParameter("bname");
+String bfile = request.getParameter("bfile");
 String driverName = "com.mysql.cj.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://localhost:3306/";
 String dbName = "savya";
@@ -41,7 +43,29 @@ e.printStackTrace();
 }
 
 Connection connection = null;
-Statement statement = null;
+PreparedStatement ps = null;
+int blogid = Integer.parseInt(bno);
+%>
+<%
+try{ 
+connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+String sql ="UPDATE BLOGDETAILS SET bno=?, BNAME=?, BFILE=? where bno="+bno;
+ps = connection.prepareStatement(sql);
+ps.setInt(1,blogid);
+ps.setString(2,bname);
+ps.setString(3,bfile);
+ps.executeUpdate();
+}
+catch (Exception e) {
+e.printStackTrace();
+}
+
+%>
+<%
+
+
+Connection connect = null;
+Statement state = null;
 ResultSet resultSet = null;
 %>
 <h2 align="center"><font><strong>Data from database</strong></font></h2>
@@ -50,18 +74,15 @@ ResultSet resultSet = null;
 <tr>
 <th style="background:midnightblue; color:white; font-size:30px"><b>bno</b></th>
 <th style="background:midnightblue; color:white; font-size:30px"><b>bname</b></th>
-<th style="background:midnightblue; color:white; font-size:30px"><b>open</b></th>
-<th style="background:midnightblue; color:white; font-size:30px"><b>edit</b></th>
-
+<th style="background:midnightblue; color:white; font-size:30px"><b>bfile</b></th>
 
 </tr>
 <%
 try{ 
-connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
-statement=connection.createStatement();
-String sql ="SELECT * FROM blogdetails";
-
-resultSet = statement.executeQuery(sql);
+connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+state=connect.createStatement();
+String sl ="SELECT * FROM blogdetails";
+resultSet = state.executeQuery(sl);
 while(resultSet.next()){
 %>
 <tr bgcolor="white" style="border:none; font-size:30px; color:midnightblue;">
@@ -69,15 +90,9 @@ while(resultSet.next()){
 <td ><%=resultSet.getInt("bno") %></td>
 <td><%=resultSet.getString("bname") %></td>
 <td>
-    
-<a href="/pages/viewblog.jsp?bno=<%=resultSet.getInt("bno")%>">open</a>
-</td>
-<td>
-<a style="color:midnightblue;" href="/pages/update.jsp?bno=<%=resultSet.getInt("bno")%>">edit</a>
-
+    <%=resultSet.getString("bfile") %>
 </td>
 </tr>
-
 <% 
 }
 
@@ -85,6 +100,7 @@ while(resultSet.next()){
 e.printStackTrace();
 }
 %>
-</table>
+</table> 
+
 </body>
 </html>

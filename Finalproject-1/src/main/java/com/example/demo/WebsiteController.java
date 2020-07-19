@@ -29,16 +29,21 @@ public class WebsiteController {
 		return "blog";
 	}
 	
-	@PostMapping("/showblogs")
+	/*@PostMapping("/showblogs")
 public @ResponseBody Iterable<Blogdetails> showblogs() {
 	return repo.findAll();	
-				}
+				}*/
+	
+	@PostMapping("/showblogs")
+	public String showblogs() {
+		return "showblogs";	
+					}
 		
-	@RequestMapping("/add")
+	@PostMapping("/add")
 	public String addBlog() {
 		return "addblog";
 	}
-	@RequestMapping("/delete")
+	@PostMapping("/delete")
 	public String deleteBlog() {
 		return "deleteblog";
 	}
@@ -52,9 +57,16 @@ public @ResponseBody Iterable<Blogdetails> showblogs() {
 		repo.save(b);
 		return "addblog";
 	}
+	
 	@PostMapping("/deleted")
 	public String deleted(@RequestParam int bno) {
 			repo.deleteById(bno);
 		return "deleteblog";
 	}
+	
+	@PostMapping("/update")
+	public String updateBlog() {
+		return "updateblog";
+	}
+
 }
